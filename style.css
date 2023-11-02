@@ -1,0 +1,62 @@
+html {
+    height: 100%;
+    font-size: inherit !important
+}
+
+body {
+    font: 90%/1.45em "Helvetica Neue",HelveticaNeue,Helvetica,Arial,sans-serif !important;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+    position: relative;
+    padding-bottom: 167px !important;
+    height: auto !important;
+    min-height: 100%;
+    box-sizing: border-box;
+    -webkit-font-smoothing: inherit
+}
+.completed {
+    background-color: rgba(236, 255, 220,1) !important;
+}
+.fa-check { 
+    color: rgba(71, 135, 120,1);
+}
+.editor-edit, .open-all {
+    cursor: pointer;
+}
+.form-group {
+    margin-bottom: 30px;
+    min-height: 20px;
+}
+.modal-header .close {
+    margin-top: -25px;
+}
+.modal-body {
+    min-height: 450px;
+}
+#submit, #save {
+    margin-top: 20px;
+}
+#feedback{
+    padding: 10px;
+    width: 100%;
+    margin: 30px;
+    text-align: center;
+}
+.alert{ 
+    display: inline-block;
+}
+.closebtn {
+margin-left: 15px;
+color: #787878;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+}
+.closebtn:hover {
+color: black;
+}
