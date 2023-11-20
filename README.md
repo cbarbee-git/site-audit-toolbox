@@ -17,7 +17,7 @@ This tool is meant to be used inside a WordPress environment. At some point, it 
 
 ## ✨ Dependencies
 
-Make sure you have [chrome-php/chrome](hhttps://packagist.org/packages/chrome-php/chrome) installed 
+Make sure you have [chrome-php/chrome](https://packagist.org/packages/chrome-php/chrome) installed 
 
 ```sh
 $ composer require chrome-php/chrome 
