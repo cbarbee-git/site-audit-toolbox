@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Site Audit Toolbo</title>
+    <title>Site Audit Toolbox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -90,10 +90,12 @@
                 if($row['login_path'] !== ''){
                 echo("<a href=\"https://".$row['site_url'] . "/" . $row['login_path'] ."\" target=\"_blank\"><i alt=\"Open Wordpress\" title=\"Open Wordpress\" class=\"fab fa-wordpress-simple action\"></i></a>");
                 echo("&nbsp;&nbsp;");
+                echo("<a href=\"fetch.php?site-id=".$row['id']."\" target=\"_blank\"><i alt=\"Fetch Screenshots\" title=\"Fetch Screenshots\" class=\"fas fa-window-restore action\"></i></a>");
+                echo("&nbsp;&nbsp;");
                 }
                 echo("<a><i alt=\"Edit\" title=\"Edit\" class=\"fas fa-pencil-alt fa-flip-horizontal editor-edit action\"></i></a>");
                 echo("&nbsp;&nbsp;");
-                echo("<a><i alt=\"Open All\" title=\"Open All\" class=\"fas fa-external-link-alt open-all\" data-url=\"https://".$row['site_url']."\" data-admin=\"https://".$row['site_url'] . "/" . $row['login_path'] ."\"></i></a>");
+                echo("<a><i alt=\"Open All\" title=\"Open All\" class=\"fas fa-external-link-alt open-all\" data-fetch=\"fetch.php?site-id=".$row['id']."\" data-url=\"https://".$row['site_url']."\" data-admin=\"https://".$row['site_url'] . "/" . $row['login_path'] ."\"></i></a>");
                 echo("\t\t\t\t\t</td>");
                 
                 echo("\t\t\t\t</tr>\n");
@@ -213,6 +215,9 @@
     table.on('click', 'i.open-all', function (e) {
         e.stopPropagation();
         const elm = e.currentTarget;
+        if($(elm).attr('data-fetch')){
+            window.open($(elm).attr('data-fetch'));
+        }
         if($(elm).attr('data-url')){//be weary of pop-up blockers
             window.open($(elm).attr('data-url'));
         }

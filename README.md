@@ -15,6 +15,14 @@ This tool is meant to be used inside a WordPress environment. At some point, it 
     <img src='/img/site-audit-table.jpeg' alt='Table Diagram' title='Table Diagram' />
 </div>
 
+## ✨ Dependencies
+
+Make sure you have [chrome-php/chrome](hhttps://packagist.org/packages/chrome-php/chrome) installed 
+
+```sh
+$ composer require chrome-php/chrome 
+```
+
 ## Author:
 
 Chad Barbee <br />
