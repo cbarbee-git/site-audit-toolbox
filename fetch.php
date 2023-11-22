@@ -50,11 +50,9 @@ foreach($results as $result) {
     $prepend_url = (str_starts_with( $result['site_url'], 'www' ) ? 'https://' : 'https://www.');
     $request_url = $prepend_url . $result['site_url'] . $api_endpoint;
     $full_site_url = $prepend_url . $result['site_url'];
-    
     $response = call_curl($request_url);
-
     if($response === NULL){
-        die("Unable to reach API Endpoint. Site isn't Wordpress.");
+        die("Unable to reach API Endpoint. Is Site Wordpress?");
     }
     //loop through each page
     foreach($response as $page){
@@ -78,7 +76,8 @@ function call_curl($request_url) {
     curl_setopt($curl, CURLOPT_POST, false);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($curl, CURLOPT_HEADER, false);
-
+    curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36");
+    
     $response = curl_exec($curl);
 
     curl_close($curl);
