@@ -15,6 +15,9 @@
 /vendor
 /inc
 
+/temp
+/reports
+
 .DS_Store
 Thumbs.db
 
