@@ -8,6 +8,8 @@ if (isset($_POST['site-id'])) {
 	$site_url = strip_tags($_POST['site-url']); 
     $site_page = strip_tags($_POST['site-page']);
     $site_notes = strip_tags($_POST['site-notes']);
+    //use this for editing existing rows
+    $site_completed = strip_tags($_POST['site-completed']);
 
     global $wpdb;
     $table = "{$wpdb->prefix}site_audits";
@@ -18,7 +20,9 @@ if (isset($_POST['site-id'])) {
         'site_url' => $site_url,
         'page_visited' => $site_page,
         'notes' => $site_notes,
+        'completed' => $site_completed,
     );
+    //overwrite here if needed.
     if($_POST['completed']) {
         //$fields_to_update['last_audit_timestamp'] = date('Y-m-d H:i:s',get_current_time());
         $fields_to_update['last_audit_timestamp'] = current_datetime()->format('Y-m-d H:i:s');

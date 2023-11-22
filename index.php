@@ -43,7 +43,8 @@
             foreach($results as $row) {
                 $completed = "";
                 //if longer than 30 days...
-                if(strtotime($row['last_audit_timestamp']) > strtotime('-30 days') || $row['completed'] ){
+                //if(strtotime($row['last_audit_timestamp']) > strtotime('-30 days') || $row['completed'] ){
+                if($row['completed']){
                     $completed = "class=\"completed\"";
                 }
                 echo("\t\t\t\t<tr $completed>\n");
@@ -93,7 +94,7 @@
                 echo("<a href=\"fetch.php?site-id=".$row['id']."\" target=\"_blank\"><i alt=\"Fetch Screenshots\" title=\"Fetch Screenshots\" class=\"fas fa-window-restore action\"></i></a>");
                 echo("&nbsp;&nbsp;");
                 }
-                echo("<a><i alt=\"Edit\" title=\"Edit\" class=\"fas fa-pencil-alt fa-flip-horizontal editor-edit action\"></i></a>");
+                echo("<a><i alt=\"Edit\" title=\"Edit\" data-site-completed=\"".$row['completed']."\" class=\"fas fa-pencil-alt fa-flip-horizontal editor-edit action\"></i></a>");
                 echo("&nbsp;&nbsp;");
                 echo("<a><i alt=\"Open All\" title=\"Open All\" class=\"fas fa-external-link-alt open-all\" data-fetch=\"fetch.php?site-id=".$row['id']."\" data-url=\"https://".$row['site_url']."\" data-admin=\"https://".$row['site_url'] . "/" . $row['login_path'] ."\"></i></a>");
                 echo("\t\t\t\t\t</td>");
@@ -146,6 +147,13 @@
                             <label id="lblSitePage" class="control-label col-md-3">Page Visit:</label>
                                 <div class="col-md-9">
                                     <input type="text" value="" id="site-page" name="site-page" class="form-control" />
+                                </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="lblSiteCompleted" for="site-completed" class="control-label col-md-3">Completed:</label>
+                                <div class="col-md-9">
+                                    <input type="checkbox" class="move-left" value="" id="site-completed" name="site-completed" class="form-control" />
                                 </div>
                         </div>
 
@@ -238,7 +246,10 @@ function showModal(data) {
     $('#site-admin', myModal).val(data[4].trim());
     $('#site-notes', myModal).val(data[6].trim());
     $('#site-page', myModal).val(data[7].trim());
-
+    var newValue = (data[1].trim() !== '') ? 1 : 0;
+    var isChecked = (data[1].trim() !== '') ? true : false;
+    $('#site-completed', myModal).val(newValue);
+    $('#site-completed', myModal).prop('checked', isChecked);    
     $('#site-page', myModal).focus().select();
     //display modal
     $('#modal-Edit').modal('show'); 
@@ -273,6 +284,14 @@ $(function(){
         $('input[name="site-page"]').focus();
     }); 
 });
+$('#site-completed').click(function() { 
+    if ($('#site-completed').is(":checked") == true) { 
+        $('#site-completed').val(1); 
+    } else { 
+        $('#site-completed').val(0); 
+    } 
+}); 
+
 </script>
 
 </body>
