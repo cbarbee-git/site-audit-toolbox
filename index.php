@@ -224,16 +224,16 @@
         e.stopPropagation();
         const elm = e.currentTarget;
         if($(elm).attr('data-fetch')){
-            window.open($(elm).attr('data-fetch'));
+            window.open($(elm).attr('data-fetch'), "_blank");
         }
         if($(elm).attr('data-url')){//be weary of pop-up blockers
-            window.open($(elm).attr('data-url'));
+            window.open($(elm).attr('data-url'), "_blank" );
+
         }
         if($(elm).attr('data-admin')){
-            window.open($(elm).attr('data-admin'));
+            window.open($(elm).attr('data-admin'), "_blank");
         }
         let data = table.row(e.target.closest('tr')).data();
-        //console.log(data);
         showModal(data);
     });
 
