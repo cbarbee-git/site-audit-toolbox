@@ -118,7 +118,7 @@ function call_curl($request_url) {
           echo "Control character error";
           break;
         case JSON_ERROR_SYNTAX:
-          echo "Syntax error";
+          echo "Syntax error (could be a NON-WP call)";
           break;
         case JSON_ERROR_UTF8:
           echo "Malformed UTF-8 characters";
