@@ -158,7 +158,8 @@ function ScreenShot($urlToCapture,$file_name,$temp_file_path = 'temp',$viewport_
 function ZipScreenShots($site_zip_name, $zip_file_path = 'reports', $temp_file_path = 'temp' ){
     $tempRootPath = realpath($temp_file_path);
     $zip = new ZipArchive;
-    $zip->open($zip_file_path . '/' . $site_zip_name.".zip", ZipArchive::CREATE | ZipArchive::OVERWRITE);
+    $site_zip_filename = rtrim(str_replace("/","_",$site_zip_name),'-').".zip";
+    $zip->open($zip_file_path . '/' . $site_zip_filename , ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
     // Create recursive directory iterator
     $files = new RecursiveIteratorIterator(
