@@ -63,8 +63,8 @@ foreach($results as $result) {
         //loop through each page
         foreach($response as $page){
         $file_name = str_replace(array("https://".$result['site_url'], "https://www.".$result['site_url']), array('','') , $page['link']);
-            //iframe loading breaks (timeout?, chrome browser security - ignore these for now)
-            if(!str_contains($page['content']['rendered'],'<iframe')){
+            //if key doesn't exists (NOT WP Site)   OR  - Does NOT contain iframe loading breaks (timeout?, chrome browser security - ignore these for now)
+            if(!array_key_exists('content', $page ) || !str_contains($page['content']['rendered'],'<iframe')){
                 //clean up names -                        homepage            remove extra slashes
                 $file_name = ($file_name == '/') ? $result['site_url'] : str_replace('/','_',ltrim(rtrim($file_name, '/'),'/'));
                 ScreenShot($page['link'],$file_name . '.png',$needed_directories['temp_dir'],$viewport_array);
